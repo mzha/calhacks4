@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Text, Button, View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
+import FadeInView from '../screens/fadeinview.js';
 
 export default class Loading extends React.Component {
   render() {

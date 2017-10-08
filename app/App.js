@@ -85,7 +85,7 @@ export default class App extends React.Component {
   _handleBarCodeRead = ({ type, data}) => {
     if (type == "QR_CODE" || type == "org.iso.QRCode") {
       let cleaned_address = data.substring(data.indexOf(":") + 1);
-      fetch('http://cfc7a45a.ngrok.io/history', {
+      fetch('http://calhacks4.azurewebsites.net/history', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -96,7 +96,7 @@ export default class App extends React.Component {
       })
       .then((response) => response.json())
       .then((responseJson) => {
-        fetch('http://cfc7a45a.ngrok.io/test', {
+        fetch('http://calhacks4.azurewebsites.net/test', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
