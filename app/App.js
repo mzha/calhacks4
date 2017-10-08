@@ -9,8 +9,6 @@ export default class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      text: '',
-      show: false,
       screen: "start", // possible values: start, scan, show, loading
       data: {
         percent: 80
@@ -20,32 +18,18 @@ export default class App extends React.Component {
     };
   }
 
-  submit() {
-    this.setState({screen: "show"});
-  }
-
-  back() {
-    this.setState({screen: "start"});
-  }
-
-  scan = async () => {
-    // let result = await ImagePicker.launchCameraAsync({
-    // });
-    this.setState({screen: "scan"})
-  }
-
   render() {
     switch (this.state.screen) {
       case "start":
         return (
           <Start
-            scan={this.scan.bind(this)}
+            scan={() => this.setState({screen: "scan"})}
           />
         );
       case "show":
         return (
           <Results
-            onBackPress={this.back.bind(this)}
+            onBackPress={() => this.setState({screen: "start"})}
             data={{target: this.state.target, percent: this.state.data.percent}}
             response={this.state.response}
           />
@@ -97,15 +81,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    width: 160,
-    padding: 8,
-    margin: 8,
-    borderColor: '#000',
-    borderRadius: 4,
-  },
-  percent: {
-    fontSize: 120
   }
 });
