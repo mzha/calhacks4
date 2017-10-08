@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image } from 'react-native';
-import { ImagePicker, BarCodeScanner } from 'expo';
+import { ImagePicker, BarCodeScanner, Font } from 'expo';
 
 import Results from './screens/results.js';
 import Start from './screens/start.js';
@@ -10,7 +10,7 @@ export default class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      screen: "start", // possible values: start, scan, show, loading
+      screen: "splash", // possible values: start, scan, show, loading, splash
       data: {
         percent: 80,
         balance: 0
@@ -23,6 +23,13 @@ export default class App extends React.Component {
 
   componentWillMount () {
     Image.prefetch('http://gifimage.net/wp-content/uploads/2017/02/Loading-GIF-Image-18.gif');
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+      'avenir-light': require('./assets/Avenir-Light.ttf'),
+      'avenir-next-ultralight': require('./assets/AvenirNext-UltraLight.ttf')
+    });
+    this.setState({ screen: "start" });
   }
 
   render() {
@@ -54,6 +61,12 @@ export default class App extends React.Component {
         return (
           <Loading target={this.state.target}/>
         );
+      case "splash":
+        return (
+          <View>
+            <Text>Splash</Text>
+          </View>
+        )
     }
   }
 
