@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image } from 'react-native';
-import { ImagePicker, BarCodeScanner, Font } from 'expo';
+import { ImagePicker, BarCodeScanner, Font, LinearGradient } from 'expo';
 
 import Results from './screens/results.js';
 import Start from './screens/start.js';
@@ -63,8 +63,20 @@ export default class App extends React.Component {
         );
       case "splash":
         return (
-          <View>
-            <Text>Splash</Text>
+          <View style={styles.container}>
+            <LinearGradient
+              colors={['#5693A2', '#57C37B']}
+              start={[0.5, 0]}
+              style={ StyleSheet.create({
+                wrapper: {
+                  ...StyleSheet.absoluteFillObject,
+                  flex: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }
+              }).wrapper }>
+              <Image style={{width: 128, height: 114}} source={{uri: 'https://i.imgur.com/qiMnqJF.png'}} />
+            </LinearGradient>
           </View>
         )
     }
