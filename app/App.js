@@ -107,24 +107,12 @@ export default class App extends React.Component {
         })
         .then((response2) => response2.json())
         .then((responseJson2) => {
-          var red = 255
-          var green = 255
-          if (responseJson < 50) {
-            red = 255 * (responseJson / 50)
-          } else {
-            green = 255 * ((100 - responseJson) / 50)
-          }
           this.setState({
             data: {
               percent: responseJson,
               balance: responseJson2.balance
             },
             response: responseJson,
-            style: StyleSheet.create({
-              percent: {
-                color: "rgb(" + red + ", " + green + ", 0)"
-              }
-            }),
             screen: "show"})
         })
       })
