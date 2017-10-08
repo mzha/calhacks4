@@ -87,7 +87,7 @@ export default class App extends React.Component {
   }
 
   _handleBarCodeRead = ({ type, data}) => {
-    if (type == "QR_CODE") {
+    if (type == "QR_CODE" || type == "org.iso.QRCode") {
       let cleaned_address = data.substring(data.indexOf(":") + 1);
       fetch('http://cfc7a45a.ngrok.io/history', {
         method: 'POST',
