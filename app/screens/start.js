@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, Button, View, StyleSheet } from 'react-native';
+import { Image, Text, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo';
 
 export default class Start extends React.Component {
@@ -19,15 +19,11 @@ export default class Start extends React.Component {
           }).wrapper }>
           <Image style={{width: 128, height: 114}} source={{uri: 'https://i.imgur.com/qiMnqJF.png'}} />
           <Text style={styles.title}>Upstream</Text>
-          <View style={styles.buttonWrapper}>
-            <View style={styles.button}>
-              <Button
-                onPress={this.props.scan}
-                title="Scan QR Code"
-                color="#5693A2"
-              />
-            </View>
-          </View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={this.props.scan}>
+              <Text style={styles.buttonText}>Scan QR Code</Text>
+            </TouchableOpacity>
         </LinearGradient>
       </View>
     );
@@ -48,12 +44,18 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     backgroundColor: 'transparent'
   },
-  buttonWrapper: {
-    backgroundColor: "#fff",
+  button: {
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 20,
-    width: 150,
-    height: 50
+    borderRadius: 30,
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingTop: 12,
+    paddingBottom: 12
+  },
+  buttonText: {
+    color: '#5693A2',
+    fontSize: 24
   }
 });
