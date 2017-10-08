@@ -19,7 +19,7 @@ export default class Results extends React.Component {
           }).wrapper }>
           <View style={styles.body}>
             <Text style={styles.address}>{this.props.data.target}</Text>
-            <Text style={[styles.percent, this.props.style.percent]}>{this.props.data.percent}%</Text>
+            <Text style={[styles.percent, this._calculateColorStyle(this.props.data.percent)]}>{this.props.data.percent}%</Text>
             <Text>Taint Level</Text>
             <Text>Balance: {this.props.data.balance} BTC</Text>
             <Button
@@ -32,6 +32,20 @@ export default class Results extends React.Component {
         </LinearGradient>
       </View>
     );
+  }
+
+  _calculateColorStyle = (percent) => {
+    // red color: c71f16 - 199,31,22
+    // green color: 57C37B - 87,195,123
+    const red = 87 + ((199 - 87) * percent / 100);
+    const green = 195 - ((195 - 31) * percent / 100);
+    const blue = 123 - ((123 - 22) * percent / 100);
+    const colorStyle = StyleSheet.create({
+      percent: {
+        color: "rgb(" + red + ", " + green + ", " + blue + ")"
+      }
+    });
+    return colorStyle.percent;
   }
 }
 
