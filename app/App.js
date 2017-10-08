@@ -1,33 +1,58 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+//import QRCodeScanner from 'react-native-qrcode-scanner';
 
 export default class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { text: '' };
+    this.state = {
+      text: '',
+      show: false,
+      data: {
+        percent: 80
+      }
+    };
   }
 
   submit() {
+    this.setState({show: true, text: 'hi'});
+  }
 
+  back() {
+    this.setState({show: false});
   }
 
   render() {
-    return (
-      <View style={styles.container}>
+    if (this.state.show) {
+      return (
+        <View style={styles.container}>
+        <Text>Percentage: {this.state.data.percent}</Text>
+        <Button
+        onPress={this.back.bind(this)}
+        title="Try another"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+        />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
         <Text>Please enter a bitcoin address</Text>
         <TextInput
-          style={styles.input}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+        style={styles.input}
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
         />
         <Button
-          onPress={this.submit}
-          title="Analyze"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
+        onPress={this.submit.bind(this)}
+        title="Analyze"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
         />
-      </View>
-    );
+        </View>
+      );
+    }
   }
 }
 
