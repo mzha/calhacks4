@@ -1,8 +1,18 @@
 import React from 'react';
 import { Image, Text, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient, Font } from 'expo';
 
 export default class Start extends React.Component {
+  state = {
+    fontLoaded: false
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+      'avenir-light': require('../assets/Avenir-Light.ttf'),
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -22,7 +32,11 @@ export default class Start extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={this.props.scan}>
-              <Text style={styles.buttonText}>Scan QR Code</Text>
+              {
+                this.state.fontLoaded ? (
+                  <Text style={styles.buttonText}>Scan QR Code</Text>
+                ) : null
+              }
             </TouchableOpacity>
         </LinearGradient>
       </View>
@@ -45,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   button: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F8F9F4',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
@@ -56,6 +70,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#5693A2',
-    fontSize: 24
+    fontSize: 24,
+    fontFamily: 'avenir-light'
   }
 });
