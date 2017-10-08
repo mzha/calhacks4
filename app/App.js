@@ -12,7 +12,8 @@ export default class App extends React.Component {
       data: {
         percent: 80
       },
-      target: null
+      target: null,
+      response: null
     };
   }
 
@@ -66,6 +67,7 @@ export default class App extends React.Component {
               color="#841584"
               accessibilityLabel="Learn more about this purple button"
             />
+            <Text>responseJson: {JSON.stringify(this.state.response)}</Text>
           </View>
         );
       case "scan":
@@ -86,7 +88,25 @@ export default class App extends React.Component {
 
   _handleBarCodeRead = ({ type, data}) => {
     if (type == "QR_CODE") {
-      this.setState({target: data, screen: "show"});
+      let cleaned_address = data.substring(data.indexOf(":") + 1);
+      fetch('http://cfc7a45a.ngrok.io/history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          address: cleaned_address
+        })
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({data: {percent: responseJson}, response: responseJson, screen: "show"})
+      })
+      .catch((error) => {
+        this.setState({screen: "scan"})
+        alert("Networking error, please try again");
+      });
+      this.setState({target: cleaned_address, screen: "loading"});
     }
   }
 }
