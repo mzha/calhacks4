@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, View, StyleSheet } from 'react-native';
+import { Image, Text, Button, View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 
 export default class Start extends React.Component {
@@ -17,12 +17,17 @@ export default class Start extends React.Component {
               justifyContent: 'center'
             }
           }).wrapper }>
-          <Text style={styles.title}>Bitcoin Security Assessment</Text>
-          <Button
-            onPress={this.props.scan}
-            title="Scan QR Code"
-            color="#5693A2"
-          />
+          <Image style={{width: 128, height: 114}} source={{uri: 'https://i.imgur.com/qiMnqJF.png'}} />
+          <Text style={styles.title}>Upstream</Text>
+          <View style={styles.buttonWrapper}>
+            <View style={styles.button}>
+              <Button
+                onPress={this.props.scan}
+                title="Scan QR Code"
+                color="#5693A2"
+              />
+            </View>
+          </View>
         </LinearGradient>
       </View>
     );
@@ -40,6 +45,15 @@ const styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     padding: 20,
-    marginBottom: 40
+    marginBottom: 40,
+    backgroundColor: 'transparent'
+  },
+  buttonWrapper: {
+    backgroundColor: "#fff",
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    width: 150,
+    height: 50
   }
 });
