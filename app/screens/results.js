@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, View, StyleSheet } from 'react-native';
+import { Text, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo';
 
 export default class Results extends React.Component {
@@ -13,7 +13,8 @@ export default class Results extends React.Component {
             wrapper: {
               ...StyleSheet.absoluteFillObject,
               flex: 1,
-              alignItems: 'center',
+              alignItems: 'stretch',
+              padding: 20,
               justifyContent: 'center'
             }
           }).wrapper }>
@@ -22,12 +23,16 @@ export default class Results extends React.Component {
             <Text style={[styles.percent, this._calculateColorStyle(this.props.data.percent)]}>{this.props.data.percent}%</Text>
             <Text>Taint Level</Text>
             <Text>Balance: {this.props.data.balance} BTC</Text>
-            <Button
-              onPress={this.props.onBackPress}
-              title="Try another"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={this.props.onBackPress}>
+              <LinearGradient
+                colors={['#3EA195', '#5693A2']}
+                start={[0.1, 0]}
+                style={styles.button}>
+                <Text style={styles.buttonText}>Back</Text>
+              </LinearGradient>
+            </TouchableOpacity>
           </View>
         </LinearGradient>
       </View>
@@ -52,7 +57,7 @@ export default class Results extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F8F9F4',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -62,11 +67,29 @@ const styles = StyleSheet.create({
   percent: {
     fontSize: 120
   },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingTop: 12,
+    paddingBottom: 12
+  },
+  buttonText: {
+    fontFamily: 'avenir-light',
+    color: '#F8F9F4',
+    fontSize: 24
+  },
+  buttonContainer: {
+    marginTop: 24
+  },
   body: {
-    backgroundColor: '#fff',
-    width: 350,
-    height: 300,
+    backgroundColor: '#F8F9F4',
     borderRadius: 5,
+    padding: 8,
+    paddingTop: 64,
+    paddingBottom: 64,
     alignItems: 'center',
     justifyContent: 'center'
   }
