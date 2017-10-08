@@ -4,6 +4,7 @@ import { ImagePicker, BarCodeScanner } from 'expo';
 
 import Results from './screens/results.js';
 import Start from './screens/start.js';
+import Loading from './screens/loading.js';
 
 export default class App extends React.Component {
   constructor (props) {
@@ -22,9 +23,7 @@ export default class App extends React.Component {
     switch (this.state.screen) {
       case "start":
         return (
-          <Start
-            scan={() => this.setState({screen: "scan"})}
-          />
+          <Start scan={() => this.setState({screen: "scan"})} />
         );
       case "show":
         return (
@@ -36,16 +35,13 @@ export default class App extends React.Component {
         );
       case "scan":
         return (
-          <BarCodeScanner
+          <BarCodeScanner style={StyleSheet.absoluteFill}
             onBarCodeRead={this._handleBarCodeRead.bind(this)}
-            style={StyleSheet.absoluteFill}
           />
         );
       case "loading":
         return (
-          <View style={styles.container}>
-            <Text>Loading data for {this.state.target}</Text>
-          </View>
+          <Loading target={this.state.target} />
         );
     }
   }
