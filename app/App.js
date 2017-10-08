@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { ImagePicker, BarCodeScanner } from 'expo';
+import Results from './screens/results.js';
 
 export default class App extends React.Component {
   constructor (props) {
@@ -57,18 +58,11 @@ export default class App extends React.Component {
         );
       case "show":
         return (
-          <View style={styles.container}>
-            <Text>Showing results for {this.state.target}</Text>
-            <Text style={styles.percent}>{this.state.data.percent}%</Text>
-            <Text>tainted</Text>
-            <Button
-              onPress={this.back.bind(this)}
-              title="Try another"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
-            <Text>responseJson: {JSON.stringify(this.state.response)}</Text>
-          </View>
+          <Results
+            onBackPress={this.back.bind(this)}
+            data={{target: this.state.target, percent: this.state.data.percent}}
+            response={this.state.response}
+          />
         );
       case "scan":
         return (
