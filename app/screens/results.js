@@ -20,10 +20,10 @@ export default class Results extends React.Component {
             }
           }).wrapper }>
           <View style={styles.body}>
-            <Text style={styles.address}>{this.props.data.target}</Text>
+            <Text style={styles.header}>Taint Level</Text>
             <Text style={[styles.percent, this._calculateColorStyle(this.props.data.percent)]}>{this.props.data.percent}%</Text>
-            <Text>Taint Level</Text>
-            <Text>Balance: {this.props.data.balance} BTC</Text>
+            <Text style={styles.grey}>Balance: {this.props.data.balance} BTC</Text>
+            <Text style={[styles.address, styles.grey]}>{this.props.data.target}</Text>
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={this.props.onBackPress}>
@@ -63,12 +63,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   address: {
-    fontWeight: 'bold'
+    // fontWeight: 'bold'
   },
   percent: {
-    fontSize: 120
+    fontSize: 100
   },
   button: {
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
@@ -93,5 +94,13 @@ const styles = StyleSheet.create({
     paddingBottom: 64,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  header: {
+    fontSize: 40,
+    paddingBottom: 10,
+    color: "#5693A2"
+  },
+  grey: {
+    color: "grey"
   }
 });

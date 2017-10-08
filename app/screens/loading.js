@@ -20,8 +20,9 @@ export default class Loading extends React.Component {
           }).wrapper }>
           <View style={styles.body}>
             <Image style={styles.loadingImage}
-              source={{uri: 'http://gifimage.net/wp-content/uploads/2017/02/Loading-GIF-Image-18.gif'}}
+              source={{uri: 'http://gifimage.net/wp-content/uploads/2017/08/loading-gif-transparent-10.gif'}}
             />
+            <Text style={styles.text}>Loading</Text>
           </View>
         </LinearGradient>
       </View>
@@ -45,7 +46,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   loadingImage: {
-    width: 200,
-    height: 200
+    width: 146,
+    height: 124
+  },
+  text: {
+    fontFamily: 'avenir-next-ultralight',
+    fontSize: 25
   }
 });
