@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { ImagePicker, BarCodeScanner } from 'expo';
+
 import Results from './screens/results.js';
+import Start from './screens/start.js';
 
 export default class App extends React.Component {
   constructor (props) {
@@ -36,25 +38,9 @@ export default class App extends React.Component {
     switch (this.state.screen) {
       case "start":
         return (
-          <View style={styles.container}>
-            <Text>Please enter a bitcoin address</Text>
-            <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            />
-            <Button
-              onPress={this.scan.bind(this)}
-              title="Scan QR Code"
-              color="#654321"
-            />
-            <Button
-              onPress={this.submit.bind(this)}
-              title="Analyze"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
-          </View>
+          <Start
+            scan={this.scan.bind(this)}
+          />
         );
       case "show":
         return (
