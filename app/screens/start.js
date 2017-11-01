@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo';
 
+/* Starting page for BitTrace*/
 export default class Start extends React.Component {
 
   render() {
