@@ -3,6 +3,7 @@ import { Image, Text, Button, View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 import FadeInView from '../screens/fadeinview.js';
 
+/* Loading page for BitTrace*/
 export default class Loading extends React.Component {
   render() {
     return (
